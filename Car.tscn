@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2xwf6obkmv1o"]
+
+[ext_resource type="Script" path="res://Car.gd" id="1_0ypd7"]
+[ext_resource type="Texture2D" uid="uid://eaikt4qdests" path="res://skins/carreragt.png" id="1_77ogj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_lp5sm"]
+friction = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snks4"]
+size = Vector2(58, 141)
+
+[node name="Car" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_lp5sm")
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_0ypd7")
+
+[node name="skin" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.8325
+offset_top = -92.825
+offset_right = 44.8325
+offset_bottom = 92.825
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_77ogj")
+expand_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_snks4")
+
+[node name="Camera2D" type="Camera2D" parent="."]

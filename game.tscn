@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://b85ps86rooio0"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_e5ube"]
+[ext_resource type="Texture2D" uid="uid://c3g0fqkagp1n4" path="res://buildings/generic1.png" id="3_gcb2x"]
+[ext_resource type="PackedScene" uid="uid://c2xwf6obkmv1o" path="res://Car.tscn" id="3_q26je"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_go246"]
+size = Vector2(1662, 216)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40kmi"]
+size = Vector2(5509, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vlqqc"]
+size = Vector2(5509, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_286y8"]
+size = Vector2(5509, 320)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_e5ube")
+
+[node name="building1" type="TextureRect" parent="."]
+offset_left = -622.0
+offset_top = -62.0
+offset_right = 274.0
+offset_bottom = 183.0
+texture = ExtResource("3_gcb2x")
+expand_mode = 1
+
+[node name="building2" type="TextureRect" parent="."]
+offset_left = 195.0
+offset_top = -62.0
+offset_right = 1091.0
+offset_bottom = 183.0
+texture = ExtResource("3_gcb2x")
+expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBody2D"]
+position = Vector2(216, 78)
+shape = SubResource("RectangleShape2D_go246")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D/StaticBody2D"]
+position = Vector2(589, 1872)
+shape = SubResource("RectangleShape2D_40kmi")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D/StaticBody2D"]
+position = Vector2(609, -1204)
+shape = SubResource("RectangleShape2D_vlqqc")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D/StaticBody2D"]
+position = Vector2(-2274, 137)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_vlqqc")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Area2D/StaticBody2D"]
+position = Vector2(3370, 318)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_286y8")
+
+[node name="player" parent="." instance=ExtResource("3_q26je")]
+position = Vector2(312, 461)
+
+[editable path="player"]
