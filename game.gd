@@ -12,15 +12,15 @@ func _input(event: InputEvent):
 		player.moving_north = true;
 	elif event.is_action_released("arrow_up"):
 		player.moving_north = false;
-	elif event.is_action_pressed("arrow_down"):
+	if event.is_action_pressed("arrow_down"):
 		player.moving_south = true;
 	elif event.is_action_released("arrow_down"):
 		player.moving_south = false;
-	elif event.is_action_pressed("arrow_left"):
+	if event.is_action_pressed("arrow_left"):
 		player.moving_west = true;
 	elif event.is_action_released("arrow_left"):
 		player.moving_west = false;
-	elif event.is_action_pressed("arrow_right"):
+	if event.is_action_pressed("arrow_right"):
 		player.moving_east = true;
 	elif event.is_action_released("arrow_right"):
 		player.moving_east = false;
