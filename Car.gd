@@ -9,10 +9,10 @@ const SOUTHWEST_ROTATION := 225.0;
 const SOUTHEAST_ROTATION := 135.0;
 const WEST_ROTATION := 270.0;
 const EAST_ROTATION := 90.0;
-const TURN_SPEED := 5.0;
-const MOVE_SPEED := 300.0;
-const MAX_SPEED := 500.0;
-const DECEL := 100.0;
+const TURN_SPEED := 4.3;
+const MOVE_SPEED := 1970.0;
+const MAX_SPEED := 2000.0;
+const DECEL := 9.0;
 
 var target_rotation := 0.0;
 var moving_north := false;
@@ -20,12 +20,22 @@ var moving_south := false;
 var moving_west := false;
 var moving_east := false;
 
+@onready
+var camera: Camera2D = $camera
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	pass
+
+func lockdeg(a: float) -> float:
+	a = 360.0 - (fmod(-a, 360.0)) if a < 0.0 else a
+	return fmod(a, 360.0);
+
+func _integrate_forces(state: PhysicsDirectBodyState2D):
 	# target rotation
 	var b := 0.0;
 
@@ -67,15 +77,8 @@ func _process(delta):
 		a = b if a > b - TURN_SPEED and a < b + TURN_SPEED else a;
 		self.rotation_degrees = a;
 
-func lockdeg(a: float) -> float:
-	a = 360.0 - (fmod(-a, 360.0)) if a < 0.0 else a
-	return fmod(a, 360.0);
-
-func _integrate_forces(state: PhysicsDirectBodyState2D):
 	var vx: float = 0
 	var vy: float = 0
-
-	var moving := moving_north or moving_south or moving_west or moving_east;
 	
 	# moving
 	if moving:
@@ -88,16 +91,17 @@ func _integrate_forces(state: PhysicsDirectBodyState2D):
 	vy = state.linear_velocity.y;
 	
 	# deceleration
-	if vx < -MOVE_SPEED and not moving_west:
+	if vx < 0 and not moving_west:
 		vx -= vx / DECEL;
-	if vx > +MOVE_SPEED and not moving_east:
+	if vx > 0 and not moving_east:
 		vx -= vx / DECEL;
-	if vy < -MOVE_SPEED and not moving_north:
+	if vy < 0 and not moving_north:
 		vy -= vy / DECEL;
-	if vy > +MOVE_SPEED and not moving_south:
+	if vy > 0 and not moving_south:
 		vy -= vy / DECEL;
 
-	vx = clampf(vx, -MAX_SPEED, +MAX_SPEED)
-	vy = clampf(vy, -MAX_SPEED, +MAX_SPEED)
+	vx = clampf(vx, -MAX_SPEED, +MAX_SPEED);
+	vy = clampf(vy, -MAX_SPEED, +MAX_SPEED);
 	
-	state.linear_velocity = Vector2(vx, vy)
+	state.linear_velocity = Vector2(vx, vy);
+	state.angular_velocity = 0.0;

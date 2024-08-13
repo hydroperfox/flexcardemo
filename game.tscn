@@ -35,28 +35,26 @@ offset_bottom = 183.0
 texture = ExtResource("3_gcb2x")
 expand_mode = 1
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Area2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(216, 78)
 shape = SubResource("RectangleShape2D_go246")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D/StaticBody2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(589, 1872)
 shape = SubResource("RectangleShape2D_40kmi")
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Area2D/StaticBody2D"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(609, -1204)
 shape = SubResource("RectangleShape2D_vlqqc")
 
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Area2D/StaticBody2D"]
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-2274, 137)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_vlqqc")
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="Area2D/StaticBody2D"]
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(3370, 318)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_286y8")
