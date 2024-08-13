@@ -10,8 +10,8 @@ const SOUTHEAST_ROTATION := 135.0;
 const WEST_ROTATION := 270.0;
 const EAST_ROTATION := 90.0;
 const TURN_SPEED := 4.3;
-const MOVE_SPEED := 1970.0;
-const MAX_SPEED := 2000.0;
+const MOVE_SPEED := 790.0;
+const MAX_SPEED := 790.0;
 const DECEL := 9.0;
 
 var target_rotation := 0.0;
